@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Form</title>
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ <form id="signup-form">
+ <input type="text" id="name" name="name" placeholder="Name"> <br> <input type="text" id="username" name="username"
+placeholder="Username"> <br>
+ <input type="password" id="password" name="password"
+placeholder="Password"> <br>
+ <input type="email" id="email" name="email" placeholder="Email"><br> <input type="date" id="birthdate" name="birthdate"
+placeholder="Birthdate"><br>
+ <input type="text" id="gender" name="gender"
+placeholder="Gender"><br>
+ <input type="text" id="phone" name="phone" placeholder="Phone
+Number"><br>
+ <input type="text" id="zipcode" name="zipcode" placeholder="Zip code"><br>
+ <input type="text" id="country" name="country"
+placeholder="Country"><br>
+ <input type="submit" value="Register">
+ </form>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+ const form = document.getElementById('signup-form');
+
+ form.addEventListener('submit', function(event) {
+ event.preventDefault();
+function validateName(name) {
+ return name.trim() !== '';
+ }
+
+ function validateUsername(username) {
+ return username.trim().length >= 3;
+ }
+
+ function validatePassword(password) {
+ return password.trim().length >= 6;
+ }
+
+ function validateEmail(email) {
+ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ return emailRegex.test(email);
+ }
+
+ function validateBirthdate(birthdate) {
+ return !isNaN(Date.parse(birthdate));
+ }
+
+ function validateGender(gender) {
+ return gender.trim() !== '';
+ }
+
+ function validatePhone(phone) {
+ const phoneRegex = /^\d{10}$/;
+ return phoneRegex.test(phone);
+ }
+
+ function validateZipcode(zipcode) {
+ const zipRegex = /^\d{5}$/;
+ return zipRegex.test(zipcode);
+ }
+
+ function validateCountry(country) {
+ return country.trim() !== '';
+ }
+ const name = document.getElementById('name').value;
+ const username = document.getElementById('username').value;
+ const password = document.getElementById('password').value;
+ const email = document.getElementById('email').value;
+ const birthdate = document.getElementById('birthdate').value; const gender = document.getElementById('gender').value;
+ const phone = document.getElementById('phone').value;
+ const zipcode = document.getElementById('zipcode').value;
+ const country = document.getElementById('country').value;
+ if (!validateName(name)) {
+ alert('Please enter a valid name.');
+return;
+ }
+
+ if (!validateUsername(username)) {
+ alert('Username should be at least 3 characters long.');return;
+ }
+
+ if (!validatePassword(password)) {
+ alert('Password should be at least 6 characters long.');return;
+ }
+
+ if (!validateNumber(number)) {
+ alert('Please enter a valid number.');
+return;
+ }
+
+ if (!validateEmail(email)) {
+ alert('Please enter a valid email address.');
+return;
+ }
+
+ if (!validateBirthdate(birthdate)) {
+ alert('Please enter a valid birthdate.');
+return;
+ }
+
+ if (!validateGender(gender)) {
+ alert('Please select a gender.');
+return;
+ }
+
+ if (!validatePhone(phone)) {
+ alert('Please enter a valid phone number (10 digits).');return;
+ }
+
+ if (!validateZipcode(zipcode)) {
+ alert('Please enter a valid zipcode (5 digits).');
+ return;
+ }
+
+ if (!validateCountry(country)) {
+ alert('Please enter your country.');
+return;
+ }
+ alert('Form submitted successfully!');
+form.reset();
+ });
+ });
+ </script>
+</body>
+</html>
