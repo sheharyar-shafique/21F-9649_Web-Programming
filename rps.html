@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #player-choice, #computer-choice {
+            font-size: 24px;
+            margin: 10px;
+        }
+        #score {
+            font-size: 20px;
+            margin: 10px;
+        }
+        .nigga {
+            margin-top: 10%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            
+        }
+        .button-container {
+            display: flex; 
+        }
+        .nigga img {
+            width: 300px; 
+            height: auto;
+            margin-bottom: 10px;
+            
+        }
+        .pc, .cc, .s {
+            display: flex; 
+            justify-content: center; 
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="nigga">
+        <img src="done.jpeg">
+        <div class="button-container"> 
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+    </div>
+    <div id="player-choice" class="pc"></div>
+    <div id="computer-choice" class="cc"></div>
+    <div id="score" class="s"></div>
+
+    <script>
+        var playerScore = 0;
+        var computerScore = 0;
+
+        function computerPlay() {
+            var choices = ['rock', 'paper', 'scissors'];
+            var choice = choices[Math.floor(Math.random() * choices.length)];
+            return choice;
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                return "It's a tie!";
+            } else if (
+                (playerSelection === "rock" && computerSelection === "scissors") ||
+                (playerSelection === "paper" && computerSelection === "rock") ||
+                (playerSelection === "scissors" && computerSelection === "paper")
+            ) {
+                playerScore++;
+                return "You win! " + playerSelection + " beats " + computerSelection;
+            } else {
+                computerScore++;
+                return "You lose! " + computerSelection + " beats " + playerSelection;
+            }
+        }
+
+        function game() {
+            var buttons = document.querySelectorAll('button');
+
+            buttons.forEach((button) => {
+                button.addEventListener('click', function () {
+                    var playerSelection = button.id;
+                    var computerSelection = computerPlay();
+                    var result = playRound(playerSelection, computerSelection);
+                    document.querySelector('#player-choice').textContent = "Player chose: " + playerSelection;
+                    document.querySelector('#computer-choice').textContent = "Computer chose: " + computerSelection;
+                    document.querySelector('#score').textContent = "Score: " + playerScore + " - " + computerScore;
+                });
+            });
+        }
+
+        game();
+    </script>
+</body>
+</html>

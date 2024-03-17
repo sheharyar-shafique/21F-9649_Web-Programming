@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 250px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box {
+            color: white;
+            height: 150px;
+            width: 150px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        #hours {
+            background-color: red;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        #minutes {
+            background-color: yellow;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        #seconds {
+            background-color: green;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        #period {
+            background-color: blue;
+            font-weight: bold;
+            font-size: larger;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body style="background-color: blanchedalmond;">
+    <div id="clock">
+        <div class="container">
+            <div class="box" id="hours">
+                <h2>HOURS</h2>
+                <div id="hoursText"></div>
+            </div>
+            <div class="box" id="minutes">
+                <h2>MINS</h2>
+                <div id="minutesText"></div>
+            </div>
+            <div class="box" id="seconds">
+                <h2>SECS</h2>
+                <div id="secondsText"></div>
+            </div>
+            <div class="box" id="period">
+                <h2>PERIOD</h2>
+                <div id="periodText"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            setInterval(function(){
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+                var period = "AM";
+
+                if(hours >= 12){
+                    period = "PM";
+                }
+
+                if(hours > 12){
+                    hours -= 12; 
+                }
+
+                $("#hoursText").html(( hours < 10 ? "0" : "" ) + hours);
+                $("#minutesText").html(( minutes < 10 ? "0" : "" ) + minutes);
+                $("#secondsText").html(( seconds < 10 ? "0" : "" ) + seconds);
+                $("#periodText").html(period);
+            },1000); 
+        });
+    </script>
+</body>
+</html>
